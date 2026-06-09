@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Slangtionary — Slang Dictionary</title>
+<meta name="description" content="The internet's slang dictionary. Search Gen Z lingo, TikTok trends, gaming terms, dating slang, meme culture, and more. No cap." />
+<meta property="og:title" content="Slangtionary — Gen Z Slang Dictionary" />
+<meta property="og:description" content="500+ slang terms explained. TikTok, gaming, internet, dating, meme culture & business slang." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Slangtionary","description":"Gen Z and internet culture slang dictionary","url":"https://slangtionary.com","potentialAction":{"@type":"SearchAction","target":"https://slangtionary.com/define/{search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffdb70;
+  --bg2: #fff4b6;
+  --bg3: #1a1a24;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text: #000000;
+  --text2: rgba(0, 0, 0, 0.55);
+  --text3: rgba(0, 0, 0, 0.3);
+  --blue-main: #4a9eff;
+  --blue-main-light: rgba(74,158,255,0.15);
+  --blue-main-glow: rgba(74,158,255,0.3);
+  --teal: #0ecfaa;
+  --teal-light: rgba(14,207,170,0.12);
+  --pink: #f06292;
+  --pink-light: rgba(240,98,146,0.12);
+  --amber: #fbbf24;
+  --amber-light: rgba(251,191,36,0.12);
+  --coral: #ff6b6b;
+  --coral-light: rgba(255,107,107,0.12);
+  --blue: #60a5fa;
+  --blue-light: rgba(96,165,250,0.12);
+  --green: #4ade80;
+  --green-light: rgba(74,222,128,0.12);
+  --red: #f87171;
+  --red-light: rgba(248,113,113,0.12);
+  --radius: 12px;
+  --radius-sm: 9px;
+  --radius-pill: 900px;
+  --font-display: 'times new roman', timesnewroman;
+  --font-mono: 'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-mono); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* PAGES */
+.page { display: none; }
+.page.active { display: block; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 28px;
+  background: rgba(12,12,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 800;
+  cursor: pointer; display: flex; align-items: center; gap: 10px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--blue-main), #38bdf8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.brand-tag {
+  font-size: 10px; font-family: var(--font-mono);
+  background: var(--blue-main-light); color: var(--blue-main);
+  border: 1px solid var(--blue-main-glow);
+  padding: 2px 8px; border-radius: var(--radius-pill);
+  -webkit-text-fill-color: var(--blue-main);
+  font-weight: 400; letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 2px; flex: 1; }
+.nav-btn {
+  background: none; border: none;
+  padding: 7px 14px; border-radius: var(--radius-sm);
+  cursor: pointer; font-size: 12px; font-family: var(--font-mono);
+  color: var(--text2); letter-spacing: 0.03em;
+  transition: all 0.15s;
+}
+.nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.nav-btn.active { color: var(--blue-main); background: var(--blue-main-light); }
+
+/* HERO */
+.hero {
+  padding: 80px 28px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 16px;
+}
+.hero h1 .line2 {
+  background: black;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub { font-size: 14px; color: var(--text2); margin-bottom: 36px; line-height: 1.7; }
+
+/* SEARCH */
+.search-wrap { position: relative; max-width: 580px; margin: 0 auto; }
+.search-input {
+  width: 100%;
+  padding: 16px 52px 16px 20px;
+  font-size: 15px; font-family: var(--font-mono);
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input::placeholder { color: var(--text3); }
+.search-input:focus { border-color: var(--blue-main); box-shadow: 0 0 0 3px var(--blue-main-glow); }
+.search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 18px; pointer-events: none; }
+.autocomplete {
+  position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: var(--radius); z-index: 300; overflow: hidden; display: none;
+}
+.autocomplete.show { display: block; }
+.auto-item {
+  padding: 12px 16px; cursor: pointer; font-size: 13px;
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.auto-item:last-child { border-bottom: none; }
+.auto-item:hover { background: rgba(255,255,255,0.04); }
+.auto-term { flex: 1; font-weight: 700; }
+.auto-badge { font-size: 10px; padding: 3px 9px; border-radius: var(--radius-pill); letter-spacing: 0.05em; }
+
+/* CATEGORIES */
+.section { padding: 0 28px 48px; }
+.section-sm { padding: 0 28px 32px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.section-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.see-all { font-size: 12px; color: var(--blue-main); cursor: pointer; background: none; border: none; font-family: var(--font-mono); letter-spacing: 0.05em; }
+.see-all:hover { text-decoration: underline; }
+
+.cat-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; padding: 0 28px; }
+.cat-pill {
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  padding: 9px 18px; border-radius: var(--radius-pill);
+  cursor: pointer; font-size: 12px; font-family: var(--font-mono);
+  color: var(--text2); display: flex; align-items: center; gap: 8px;
+  transition: all 0.2s; letter-spacing: 0.03em;
+}
+.cat-pill:hover { border-color: var(--blue-main); color: var(--text); }
+.cat-pill.active { border-color: var(--blue-main); background: var(--blue-main-light); color: var(--blue-main); }
+
+/* WORD CARDS */
+.word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.word-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px;
+  cursor: pointer; transition: border-color 0.2s, transform 0.15s, background 0.2s;
+  position: relative; overflow: hidden;
+}
+.word-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--blue-main-light), transparent);
+  opacity: 0; transition: opacity 0.2s;
+}
+.word-card:hover { border-color: var(--border2); transform: translateY(-2px); background: whitesmoke; }
+.word-card:hover::after { opacity: 1; }
+.word-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; position: relative; z-index: 1; }
+.word-term { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.trend-chip { font-size: 10px; background: var(--teal-light); color: var(--teal); border: 1px solid rgba(14,207,170,0.2); padding: 3px 8px; border-radius: var(--radius-pill); letter-spacing: 0.05em; flex-shrink: 0; }
+.word-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; position: relative; z-index: 1; }
+.tag { font-size: 10px; padding: 3px 9px; border-radius: var(--radius-pill); letter-spacing: 0.05em; border: 1px solid transparent; }
+.word-def { font-size: 12px; color: var(--text2); line-height: 1.6; position: relative; z-index: 1; }
+.heat-bar { height: 2px; background: rgba(255,255,255,0.06); border-radius: 1px; margin-top: 14px; overflow: hidden; position: relative; z-index: 1; }
+.heat-fill { height: 100%; border-radius: 1px; }
+
+/* DETAIL PAGE */
+.detail-wrap { padding: 28px; max-width: 760px; margin: 0 auto; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--text2); cursor: pointer;
+  border: none; background: none; font-family: var(--font-mono);
+  margin-bottom: 32px; padding: 0; letter-spacing: 0.03em;
+  transition: color 0.15s;
+}
+.back-btn:hover { color: var(--text); }
+.detail-word { font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); font-weight: 800; letter-spacing: -2px; margin-bottom: 12px; }
+.detail-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.detail-pronun { font-size: 15px; color: var(--text3); margin-bottom: 28px; }
+.detail-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 22px; margin-bottom: 14px;
+}
+.detail-label {
+  font-size: 10px; color: var(--blue-main); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 10px; font-family: var(--font-mono);
+}
+.detail-content { font-size: 14px; line-height: 1.75; color: var(--text); }
+.example-item { display: flex; gap: 12px; margin-bottom: 10px; font-size: 13px; }
+.ex-num { color: var(--blue-main); font-size: 10px; margin-top: 5px; flex-shrink: 0; }
+.similar-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.similar-chip {
+  padding: 7px 16px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border2); background: var(--bg3);
+  font-size: 12px; cursor: pointer; font-family: var(--font-mono);
+  color: whitesmoke; transition: all 0.15s;
+}
+.similar-chip:hover { border-color: var(--blue-main); color: var(--blue-main); background: var(--blue-main-light); }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 500px) { .detail-grid { grid-template-columns: 1fr; } }
+.heat-big-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; margin: 8px 0 4px; overflow: hidden; }
+.heat-big-fill { height: 100%; border-radius: 3px; }
+
+/* BROWSE */
+.browse-wrap { padding: 28px; }
+.browse-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.filter-chip {
+  padding: 7px 16px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border); background: none;
+  font-size: 11px; cursor: pointer; font-family: var(--font-mono);
+  color: var(--text2); letter-spacing: 0.05em; transition: all 0.15s;
+}
+.filter-chip.active {color: #fff; border-color: var(--blue-main); }
+.filter-chip:hover:not(.active) { border-color: var(--border2); color: var(--text); }
+
+/* SEARCH RESULTS */
+.results-bar { padding: 0 28px 16px; font-size: 12px; color: var(--text3); letter-spacing: 0.03em; }
+.results-grid { padding: 0 28px 48px; }
+
+/* MISC */
+.divider { height: 1px; background: var(--border); margin: 0 28px 40px; }
+.empty-state { text-align: center; padding: 56px 24px; color: var(--text3); font-size: 13px; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.word-card { animation: fadeUp 0.3s ease both; }
+.word-card:nth-child(2) { animation-delay: 0.04s; }
+.word-card:nth-child(3) { animation-delay: 0.08s; }
+.word-card:nth-child(4) { animation-delay: 0.12s; }
+.word-card:nth-child(5) { animation-delay: 0.16s; }
+.word-card:nth-child(6) { animation-delay: 0.20s; }
+
+/* PLAY NAV BUTTON */
+.play-nav-btn {
+  color: var(--blue-main) !important;
+  border: 1px solid var(--blue-main-glow);
+  background: var(--blue-main-light) !important;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.play-nav-btn:hover { background: rgba(74,158,255,0.25) !important; }
+
+
+/* GAME MODAL */
+.game-overlay {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+}
+.game-overlay.show { display: flex; }
+.game-modal {
+  background: #fff8d6; border: 1px solid var(--border2);
+  border-radius: 18px; padding: 36px 32px; max-width: 520px; width: 90%;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  position: relative; animation: fadeUp 0.25s ease both;
+}
+.game-close {
+  position: absolute; top: 16px; right: 18px;
+  background: none; border: none; font-size: 20px; cursor: pointer;
+  color: var(--text3); line-height: 1;
+}
+.game-close:hover { color: var(--text); }
+.game-label {
+  font-size: 10px; color: var(--blue-main); letter-spacing: 0.14em;
+  text-transform: uppercase; font-family: var(--font-mono); margin-bottom: 14px;
+}
+.game-score-row {
+  display: flex; gap: 16px; margin-bottom: 20px; font-size: 12px;
+  color: var(--text2); font-family: var(--font-mono);
+}
+.game-score-row b { color: var(--text); }
+.game-def-card {
+  background: var(--bg3); border-radius: var(--radius); padding: 20px 22px;
+  margin-bottom: 20px; color: #eee; font-size: 14px; line-height: 1.75;
+  border: 1px solid var(--border2);
+}
+.game-examples {
+  font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 12px;
+  line-height: 1.7;
+}
+.game-input-row { display: flex; gap: 10px; margin-bottom: 14px; }
+.game-input {
+  flex: 1; padding: 12px 16px; font-size: 14px;
+  font-family: var(--font-mono); border-radius: var(--radius-sm);
+  border: 1px solid var(--border2); background: #fffbe8; color: var(--text);
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.game-input:focus { border-color: var(--blue-main); box-shadow: 0 0 0 3px var(--blue-main-glow); }
+.game-submit {
+  padding: 12px 22px; border-radius: var(--radius-sm);
+  background: var(--blue-main); color: #fff; border: none;
+  font-family: var(--font-mono); font-size: 13px; cursor: pointer;
+  transition: opacity 0.15s; font-weight: 700; letter-spacing: 0.04em;
+}
+.game-submit:hover { opacity: 0.85; }
+.game-feedback {
+  font-size: 13px; min-height: 22px; text-align: center;
+  font-family: var(--font-mono); letter-spacing: 0.04em; margin-bottom: 10px;
+  font-weight: 700;
+}
+.game-feedback.correct { color: #0ecfaa; }
+.game-feedback.wrong { color: #f87171; }
+.game-hint {
+  font-size: 11px; color: var(--text3); text-align: center;
+  margin-bottom: 14px; font-family: var(--font-mono);
+}
+.game-actions { display: flex; gap: 10px; justify-content: center; }
+.game-skip {
+  padding: 9px 20px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border2); background: none; color: var(--text2);
+  font-family: var(--font-mono); font-size: 12px; cursor: pointer;
+  transition: all 0.15s;
+}
+.game-skip:hover { color: var(--text); background: rgba(0,0,0,0.05); }
+.game-reveal {
+  padding: 9px 20px; border-radius: var(--radius-sm);
+  border: 1px solid var(--amber); background: rgba(251,191,36,0.12); color: #b8860b;
+  font-family: var(--font-mono); font-size: 12px; cursor: pointer;
+  transition: all 0.15s;
+}
+.game-reveal:hover { background: rgba(251,191,36,0.22); }
+</style>
+</head>
+<body>
+
+<!-- GAME MODAL -->
+<div class="game-overlay" id="gameOverlay" onclick="handleOverlayClick(event)">
+  <div class="game-modal">
+    <button class="game-close" onclick="closeGame()" aria-label="Close">✕</button>
+    <div class="game-label">🎮 Guess the Slang</div>
+    <div class="game-score-row">
+      <div>Score: <b id="gameScore">0</b></div>
+      <div>Streak: <b id="gameStreak">0</b> 🔥</div>
+      <div>Round: <b id="gameRound">1</b></div>
+    </div>
+    <div class="game-def-card">
+      <div id="gameDef">—</div>
+      <div class="game-examples" id="gameExamples"></div>
+    </div>
+    <div class="game-input-row">
+      <input class="game-input" type="text" id="gameInput" placeholder="Type the slang word…" onkeydown="if(event.key==='Enter') submitGuess()" autocomplete="off" />
+      <button class="game-submit" onclick="submitGuess()">Guess</button>
+    </div>
+    <div class="game-feedback" id="gameFeedback"></div>
+    <div class="game-hint" id="gameHint"></div>
+    <div class="game-actions">
+      <button class="game-reveal" onclick="revealAnswer()">Reveal answer</button>
+      <button class="game-skip" onclick="nextRound()">Skip →</button>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-brand" onclick="showPage('home')">
+    📖 Slangtionary
+    <span class="brand-tag">BETA</span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn active" id="nav-home" onclick="showPage('home'); setActiveNav('home')">Home</button>
+    <button class="nav-btn" id="nav-browse" onclick="showPage('browse'); setActiveNav('browse')">Browse</button>
+    <button class="nav-btn play-nav-btn" id="nav-play" onclick="startGame()">▶ Play</button>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <h1>
+      The internet's slang dictionary
+    </h1>
+    <p class="hero-sub">Search lingo, TikTok trends, gaming terms, and more.</p>
+    <div class="search-wrap">
+      <input class="search-input" type="text" placeholder="Search a word or phrase..." id="heroSearch" oninput="handleSearch(this.value)" autocomplete="off" aria-label="Search slang" />
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <div class="autocomplete" id="autocomplete" role="listbox"></div>
+    </div>
+  </div>
+
+  <div class="cat-grid" id="catGrid">
+    <button class="cat-pill active" onclick="filterCategory('all', this)">All</button>
+    <button class="cat-pill" onclick="filterCategory('tiktok', this)">TikTok</button>
+    <button class="cat-pill" onclick="filterCategory('gaming', this)">Gaming</button>
+    <button class="cat-pill" onclick="filterCategory('internet', this)">Internet</button>
+    <button class="cat-pill" onclick="filterCategory('dating', this)">Dating</button>
+    <button class="cat-pill" onclick="filterCategory('meme', this)">Meme Culture</button>
+    <button class="cat-pill" onclick="filterCategory('business', this)">Business</button>
+  </div>
+
+  <div id="searchResultsArea" style="display:none">
+    <p class="results-bar" id="resultsCount"></p>
+    <div class="results-grid"><div class="word-grid" id="searchGrid"></div></div>
+  </div>
+
+  <div id="trendingArea">
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Trending right now</h2>
+        <button class="see-all" onclick="showPage('browse'); setActiveNav('browse')">See all →</button>
+      </div>
+      <div class="word-grid" id="trendingGrid"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Recently added</h2>
+      </div>
+      <div class="word-grid" id="recentGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PAGE -->
+<div id="page-detail" class="page">
+  <div class="detail-wrap" id="detailContent"></div>
+</div>
+
+<!-- BROWSE PAGE -->
+<div id="page-browse" class="page">
+  <div class="browse-wrap">
+    <div class="section-header" style="margin-bottom:18px">
+      <h2 class="section-title">Browse all slang</h2>
+    </div>
+    <div class="browse-filters">
+      <button class="filter-chip active" onclick="browseFilter('all', this)">All</button>
+      <button class="filter-chip" onclick="browseFilter('tiktok', this)">TikTok</button>
+      <button class="filter-chip" onclick="browseFilter('gaming', this)">Gaming</button>
+      <button class="filter-chip" onclick="browseFilter('internet', this)">Internet</button>
+      <button class="filter-chip" onclick="browseFilter('dating', this)">Dating</button>
+      <button class="filter-chip" onclick="browseFilter('meme', this)">Meme Culture</button>
+      <button class="filter-chip" onclick="browseFilter('business', this)">Business</button>
+      <button class="filter-chip" onclick="browseFilter('informal', this)">Informal</button>
+      <button class="filter-chip" onclick="browseFilter('formal', this)">Formal</button>
+    </div>
+    <div class="word-grid" id="browseGrid"></div>
+  </div>
+</div>
+
+
+<script>
+const CATS = { tiktok:'TikTok', gaming:'Gaming', internet:'Internet', dating:'Dating', meme:'Meme', business:'Business' };
+const CAT_COLORS = {
+  tiktok:  { bg:'rgba(74,158,255,0.15)', color:'#7ec8ff', border:'rgba(74,158,255,0.3)' },
+  gaming:  { bg:'rgba(14,207,170,0.12)', color:'#0ecfaa', border:'rgba(14,207,170,0.25)' },
+  internet:{ bg:'rgba(96,165,250,0.12)', color:'#60a5fa', border:'rgba(96,165,250,0.25)' },
+  dating:  { bg:'rgba(240,98,146,0.12)', color:'#f06292', border:'rgba(240,98,146,0.25)' },
+  meme:    { bg:'rgba(251,191,36,0.12)', color:'#fbbf24', border:'rgba(251,191,36,0.25)' },
+  business:{ bg:'rgba(74,222,128,0.12)', color:'#4ade80', border:'rgba(74,222,128,0.25)' },
+};
+const REG_COLORS = {
+  informal:{ bg:'rgba(255,107,107,0.1)', color:'#ff6b6b', border:'rgba(255,107,107,0.25)' },
+  formal:  { bg:'rgba(74,222,128,0.1)',  color:'#4ade80', border:'rgba(74,222,128,0.25)' },
+  offensive:{ bg:'rgba(248,113,113,0.15)', color:'#f87171', border:'rgba(248,113,113,0.35)' },
+};
+function heatColor(h) {
+  if (h > 85) return '#0ecfaa';
+  if (h > 70) return '#fbbf24';
+  return '#ff6b6b';
+}
+
+const SLANG = [
+  { id:1, term:'Rizz', pronun:'/rɪz/', def:'Natural charm or charisma, especially the ability to attract romantic interest effortlessly.', origin:'Coined by streamer Kai Cenat around 2022, possibly derived from "charisma." Named Oxford Word of the Year 2023.', examples:['Bro has unspoken rizz, he didn\'t even say a word.','She walked in and the whole room felt her rizz.','You can\'t teach rizz, you either have it or you don\'t.'], cat:'dating', register:'informal', similar:['aura','drip','swag','charisma'], heat:95, trending:true },
+  { id:2, term:'No cap', pronun:'/noʊ kæp/', def:'Emphasizing that what you\'re saying is completely true; no lie, for real.', origin:'Emerged from hip-hop slang in the late 2010s. "Cap" meaning a lie dates back to early 2000s Black American slang.', examples:['That movie was insane, no cap.','No cap, this is the best burger I\'ve ever had.','She actually said that? No cap?'], cat:'internet', register:'informal', similar:['for real','deadass','fr fr','on god'], heat:88, trending:true },
+  { id:3, term:'NPC', pronun:'/ˌɛn.piː.ˈsiː/', def:'A person who seems to lack independent thought or agency, like a Non-Player Character in a video game. Also a TikTok trend where creators livestream acting like NPCs.', origin:'Borrowed directly from gaming (Non-Player Character). Became a viral insult and TikTok trend in 2023.', examples:['He just goes to work, eats the same thing every day — total NPC behavior.','She went NPC live and made thousands in donations.','Stop being an NPC and think for yourself.'], cat:'gaming', register:'informal', similar:['bot','sheep','normie','main character'], heat:82, trending:true },
+  { id:4, term:'Slay', pronun:'/sleɪ/', def:'To do something exceptionally well; to succeed flawlessly or look amazing.', origin:'Rooted in Black and LGBTQ+ ballroom culture of the 1970s–80s. Popularized widely via social media and Beyoncé.', examples:['She absolutely slayed that presentation.','New haircut is giving slay.','Slay, queen, we love to see it.'], cat:'tiktok', register:'informal', similar:['ate','killed it','served','bodied'], heat:79, trending:false },
+  { id:5, term:'Delulu', pronun:'/dɪˈluːluː/', def:'Delusional; having wildly unrealistic fantasies, especially about a celebrity or relationship. Often used self-deprecatingly.', origin:'Shortened from "delusional," popularized in K-pop fandoms, then spread to mainstream social media circa 2023.', examples:['I know he\'s never gonna notice me, I\'m so delulu.','The delulu-to-solulu pipeline is real.','She thinks they\'re basically dating — absolute delulu behavior.'], cat:'tiktok', register:'informal', similar:['parasocial','main character syndrome','coping'], heat:86, trending:true },
+  { id:6, term:'Touch grass', pronun:'/tʌtʃ ɡræs/', def:'A suggestion to go outside and engage with the real world; used as an insult implying someone spends too much time online.', origin:'Originated in gaming communities around 2021, spread widely as a general internet insult for terminally online behavior.', examples:['After arguing about anime for 6 hours, someone told him to touch grass.','I need to touch grass, I\'ve been doomscrolling for 4 hours.'], cat:'internet', register:'informal', similar:['go outside','skill issue','L + ratio','get off the internet'], heat:70, trending:false },
+  { id:7, term:'Ate (and left no crumbs)', pronun:'/eɪt/', def:'To perform or execute something perfectly — so well that nothing remains to critique.', origin:'From Black drag culture and ballroom scene, referring to "eating up" a performance. Rose to mainstream usage circa 2021–2022.', examples:['Her performance ate and left no crumbs.','That fit? She ate.','They ate every scene in that movie, no notes.'], cat:'meme', register:'informal', similar:['slay','bodied','killed it','served'], heat:75, trending:false },
+  { id:8, term:'Synergy', pronun:'/ˈsɪn.ər.dʒi/', def:'The combined effect of people or systems working together, supposedly greater than the sum of parts. Heavily overused in corporate settings, now often used ironically.', origin:'From Greek synergia (working together). Became a corporate buzzword cliché in the 1990s–2000s.', examples:['We need to leverage synergy across departments.','Let\'s create synergy between our teams going forward.','All he said was synergy, pivot, and circle back — bingo card complete.'], cat:'business', register:'formal', similar:['leverage','alignment','bandwidth','pivot'], heat:55, trending:false },
+  { id:9, term:'Skill issue', pronun:'/skɪl ˈɪʃ.uː/', def:'A dismissive response implying someone\'s problem is caused by their own lack of skill, not external factors.', origin:'Gaming community origin — used when players blame lag or teammates. Spread to general internet use as an all-purpose dismissal.', examples:['Lost the game? Skill issue.','Can\'t parallel park? Sounds like a skill issue.','My boss said the deadline was unrealistic — she said skill issue.'], cat:'gaming', register:'informal', similar:['L + ratio','get good','touch grass','cope'], heat:72, trending:false },
+  { id:10, term:'Situationship', pronun:'/ˌsɪtʃ.u.ˈeɪ.ʃən.ʃɪp/', def:'A romantic relationship that lacks clear definition or commitment — more than friends, less than official partners.', origin:'Blending of "situation" and "relationship." Gained widespread use on social media around 2022 as a term for modern dating ambiguity.', examples:['We\'re not dating but we\'re not not dating — classic situationship.','I\'ve been in a situationship for 8 months and I\'m tired.','She finally ended the situationship and chose herself.'], cat:'dating', register:'informal', similar:['talking stage','almost relationship','friends with benefits','entanglement'], heat:88, trending:true },
+  { id:11, term:'Brainrot', pronun:'/ˈbreɪn.rɒt/', def:'The perceived deterioration of one\'s mind from consuming excessive, mindless internet content. Also used to describe the content itself.', origin:'Existed as a general term but exploded as an internet culture descriptor in 2023–2024, often used affectionately.', examples:['I have severe brainrot from watching Skibidi Toilet.','This video is pure brainrot and I watched it 20 times.','Gen Alpha brainrot hits different.'], cat:'meme', register:'informal', similar:['chronically online','terminally online','doomscrolling'], heat:91, trending:true },
+  { id:12, term:'Understood the assignment', pronun:'/ʌndəˈstʊd ðə əˈsaɪnmənt/', def:'Said of someone who executed a task, look, or moment perfectly — they fully grasped what was needed and delivered.', origin:'Originated on Black Twitter and TikTok around 2020–2021 as a compliment for nailing an aesthetic or challenge.', examples:['She showed up in all red for the theme party — understood the assignment.','The director understood the assignment with that final scene.','No notes. She understood the assignment.'], cat:'tiktok', register:'informal', similar:['slay','ate','served','killed it'], heat:84, trending:false },
+  { id:13, term:'Roman Empire', pronun:'/ˈroʊmən ˈɛmpaɪər/', def:'Something a person thinks about constantly without telling anyone. Based on a viral trend where people admitted they think about the Roman Empire often.', origin:'Went viral on TikTok in late 2023 when women asked men how often they think about the Roman Empire — answers were surprisingly frequent.', examples:['The ending of Lost is my Roman Empire.','She said her Roman Empire is that one awkward conversation from 2015.','Every guy has a Roman Empire, apparently.'], cat:'meme', register:'informal', similar:['brainrot','hyperfixation','obsession'], heat:78, trending:false },
+  { id:14, term:'Rent free', pronun:'/rɛnt friː/', def:'Said of a thought, person, or memory that occupies your mind constantly without your permission — "living rent free in your head."', origin:'Popularized on Twitter/X around 2019–2020 as a way to describe intrusive, unwanted preoccupation.', examples:['That song is living rent free in my head.','He doesn\'t even know who I am but he lives rent free in mine.','One bad comment and it stays rent free for weeks.'], cat:'internet', register:'informal', similar:['Roman Empire','brainrot','hyperfixation'], heat:74, trending:false },
+  { id:15, term:'Era', pronun:'/ˈɪərə/', def:'A personal phase or mindset you\'re currently in. Used to describe lifestyle, attitude, or aesthetic choices with pride.', origin:'Popularized by Taylor Swift\'s Eras Tour in 2023, then spread to describe any personal phase or vibe shift.', examples:['I\'m fully in my villain era.','She\'s in her unbothered era and it shows.','Not taking calls — deep in my rest era.'], cat:'tiktok', register:'informal', similar:['vibe','arc','mode','phase'], heat:89, trending:true },
+  { id:16, term:'Glazing', pronun:'/ɡleɪzɪŋ/', def:'Excessively praising or worshipping someone, usually to a cringe-worthy degree; the act of being a sycophant.', origin:'Gained traction in gaming and YouTube communities around 2022–2023, referring to over-the-top fan behavior.', examples:['The whole comment section is just glazing him, it\'s embarrassing.','Stop glazing your favorite streamer for five minutes.','The glazing in this fandom is unreal.'], cat:'gaming', register:'informal', similar:['simp','parasocial','dickriding','fanboy'], heat:80, trending:true },
+  { id:17, term:'IYKYK', pronun:'/ɪf juː noʊ juː noʊ/', def:'Abbreviation for "If you know, you know" — used to signal that a joke, reference, or feeling is only understood by those who\'ve experienced it.', origin:'Emerged from Black American vernacular online, popularized on Instagram and Twitter around 2019–2020.', examples:['That beach at sunset after a long week... IYKYK.','That reference was for the OGs — IYKYK.','#IYKYK if you survived high school band.'], cat:'internet', register:'informal', similar:['no cap','understood the assignment','fr fr'], heat:71, trending:false },
+  { id:18, term:'Caught in 4K', pronun:'/kɔːt ɪn fɔː keɪ/', def:'To be clearly caught doing something — filmed or documented in undeniable high-definition evidence.', origin:'A play on 4K video resolution, implying the proof is crystal clear. Went viral on TikTok and Twitter around 2020–2021.', examples:['He was caught in 4K stealing from the snack table.','The ref missed it but the camera caught him in 4K.','You can\'t deny it — caught in 4K.'], cat:'meme', register:'informal', similar:['exposed','ratio\'d','called out','on sight'], heat:76, trending:false },
+  { id:19, term:'GG', pronun:'/dʒiː dʒiː/', def:'"Good game" — said at the end of a match as sportsmanship, but often used ironically to signal a total defeat or disaster in any context.', origin:'Standard gaming etiquette since the early 2000s in multiplayer titles. Now used broadly in everyday internet speech.', examples:['GG, I missed the last train home.','Team lost 10–0. GG no re.','Forgot my umbrella in a downpour. GG.'], cat:'gaming', register:'informal', similar:['L','W','skill issue','ez'], heat:68, trending:false },
+  { id:20, term:'Talking stage', pronun:'/ˈtɔːkɪŋ steɪdʒ/', def:'The undefined pre-relationship period where two people text and flirt constantly but haven\'t defined what they are yet.', origin:'Became mainstream dating vocabulary on social media around 2021, capturing the ambiguity of modern dating culture.', examples:['We\'ve been in the talking stage for three months — make it make sense.','The talking stage is longer than some people\'s whole relationships.','He ghosted me mid talking stage and I\'m not okay.'], cat:'dating', register:'informal', similar:['situationship','almost relationship','friends with benefits','rizz'], heat:85, trending:true },
+  { id:21, term:'Main character', pronun:'/meɪn ˈkærɪktər/', def:'The belief that one\'s life is like a movie and they\'re the protagonist — often used to describe self-centered or dramatic behavior, but also as an empowerment mindset.', origin:'Popularized on TikTok around 2020–2021 as a self-affirmation trend, then became used ironically for delusion.', examples:['She walked into the party like she was the main character.','Main character behavior: putting on headphones and walking into the rain.','Sometimes you need to be your own main character.'], cat:'tiktok', register:'informal', similar:['delulu','aura','villain era','NPC'], heat:83, trending:false },
+  { id:22, term:'Lowkey', pronun:'/ˈloʊkiː/', def:'Subtly, quietly, or secretly — used to tone down a confession or admit something with minimal enthusiasm to avoid judgment.', origin:'Derived from music slang, popularized in internet culture through the 2010s. Antonym: highkey.', examples:['I lowkey love this embarrassing song.','Lowkey thought that movie was terrible.','She\'s lowkey the best player on the team.'], cat:'internet', register:'informal', similar:['honestly','ngl','kinda','fr'], heat:72, trending:false },
+  { id:23, term:'Ick', pronun:'/ɪk/', def:'A sudden feeling of disgust or repulsion toward someone you were previously attracted to, often triggered by something small and irrational.', origin:'Existed colloquially but exploded on TikTok around 2021–2022 as a dating vocabulary term, especially in UK internet spaces.', examples:['He chewed loudly once and now I have the ick.','Getting the ick from him running to catch the bus? That\'s harsh.','Once the ick hits, it\'s over — there\'s no coming back.'], cat:'dating', register:'informal', similar:['turned off','red flag','cringe','put off'], heat:87, trending:true },
+  { id:24, term:'W', pronun:'/ˈdʌbljuː/', def:'Short for "win" — used to signal approval, success, or a good outcome. Opposite of L (loss).', origin:'Originated in sports commentary, migrated to gaming, then became a ubiquitous internet reaction word by 2020.', examples:['Got the job offer. Massive W.','W response, no notes.','That update was a W for the whole community.'], cat:'gaming', register:'informal', similar:['GG','based','slay','L'], heat:81, trending:false },
+  { id:25, term:'Gatekeep', pronun:'/ˈɡeɪtkiːp/', def:'To intentionally withhold information about something cool to prevent it from becoming mainstream or overcrowded.', origin:'Came from "gatekeeping" (controlling access), adopted by internet culture around 2021 — often used in the trio "gatekeep, gaslight, girlboss."', examples:['I\'m gatekeeping this restaurant — it\'ll be ruined once it goes viral.','Stop gatekeeping good music, share it.','She gatekept that skincare routine for years.'], cat:'internet', register:'informal', similar:['IYKYK','hoard','keep to yourself','underground'], heat:73, trending:false },
+  { id:26, term:'Crop top energy', pronun:'/krɒp tɒp ˈɛnədʒi/', def:'An attitude of confidence and not caring what others think — dressing or acting for yourself unapologetically.', origin:'Emerged from body-positive TikTok communities around 2022 as shorthand for self-assured, unbothered confidence.', examples:['She showed up to the formal in a crop top — full crop top energy.','I\'m giving crop top energy this summer, no apologies.','That presentation? Crop top energy. Confident and didn\'t care who was watching.'], cat:'tiktok', register:'informal', similar:['main character','villain era','unbothered','slay'], heat:62, trending:false },
+  { id:27, term:'Bandwidth', pronun:'/ˈbændwɪdθ/', def:'One\'s mental or emotional capacity to deal with something. Borrowed from tech, now a corporate staple for saying someone is too busy or overwhelmed.', origin:'Directly from networking/computing terminology. Became a workplace buzzword through the 2010s and reached peak corporate saturation in the 2020s.', examples:['I don\'t have the bandwidth for another meeting today.','Do you have bandwidth to take on this project?','My bandwidth is completely maxed out right now.'], cat:'business', register:'formal', similar:['capacity','synergy','bandwidth','headspace'], heat:60, trending:false },
+  { id:28, term:'Booked and busy', pronun:'/bʊkt ænd ˈbɪzi/', def:'Having a full schedule; doing well professionally or socially with no time to spare. Used earnestly and ironically.', origin:'A phrase from celebrity culture — publicists would say this about their clients — that got reclaimed as a self-hype term on Black Twitter and TikTok around 2020.', examples:['Can\'t make it to drama — booked and busy.','She left that toxic job and now she\'s booked and busy.','No time for negativity, I\'m booked and busy.'], cat:'tiktok', register:'informal', similar:['that girl','main character','era','glowing up'], heat:67, trending:false },
+  { id:29, term:'Circle back', pronun:'/ˈsɜːkəl bæk/', def:'Corporate speak for "let\'s revisit this later" — often used to avoid committing to anything in the moment. Now used sarcastically everywhere.', origin:'Business jargon from the early 2000s. Became a meme target alongside "synergy" and "bandwidth" as peak corporate filler language.', examples:['Let\'s circle back on that after the quarterly review.','He said "circle back" instead of answering and I blacked out.','Circle back is just corporate for "I\'ll never address this."'], cat:'business', register:'formal', similar:['synergy','bandwidth','pivot','align'], heat:58, trending:false },
+  { id:30, term:'Understood the vibe', pronun:'/ʌndəˈstʊd ðə vaɪb/', def:'To immediately grasp the energy or mood of a situation and match it perfectly without being told.', origin:'Evolved naturally from "understood the assignment" and "vibe" culture on TikTok, emerging as a distinct phrase around 2023.', examples:['The DJ understood the vibe and played exactly what we needed.','New friend showed up with snacks and no questions — understood the vibe.','The whole cast understood the vibe in that last episode.'], cat:'tiktok', register:'informal', similar:['understood the assignment','read the room','in sync','slay'], heat:69, trending:false },
+  ];
+
+function tagStyle(c) {
+  const s = c || {};
+  return `background:${s.bg||'rgba(255,255,255,0.07)'};color:${s.color||'rgba(255,255,255,0.5)'};border:1px solid ${s.border||'rgba(255,255,255,0.12)'}`;
+}
+
+function makeCard(s) {
+  const cc = CAT_COLORS[s.cat] || {};
+  const rc = REG_COLORS[s.register] || {};
+  const catLabel = CATS[s.cat] || s.cat;
+  return `<div class="word-card" onclick="showDetail(${s.id})" role="button" tabindex="0" aria-label="View definition of ${s.term}">
+    <div class="word-card-top">
+      <span class="word-term">${s.term}</span>
+      ${s.trending ? '<span class="trend-chip">Trending</span>' : ''}
+    </div>
+    <div class="word-tags">
+      <span class="tag" style="${tagStyle(cc)}">${catLabel}</span>
+      <span class="tag" style="${tagStyle(rc)}">${s.register}</span>
+    </div>
+    <div class="word-def">${s.def.slice(0,95)}${s.def.length>95?'…':''}</div>
+    <div class="heat-bar"><div class="heat-fill" style="width:${s.heat}%;background:${heatColor(s.heat)}"></div></div>
+  </div>`;
+}
+
+function renderGrid(id, items) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = items.length ? items.map(makeCard).join('') : '<div class="empty-state">No entries found.</div>';
+}
+
+function init() {
+  renderGrid('trendingGrid', SLANG.filter(s => s.trending).slice(0, 6));
+  renderGrid('recentGrid', [...SLANG].sort((a,b) => b.id - a.id).slice(0, 6));
+  renderGrid('browseGrid', SLANG);
+}
+
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function setActiveNav(key) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (key) {
+    const btn = document.getElementById('nav-' + key);
+    if (btn) btn.classList.add('active');
+  }
+}
+
+function filterCategory(cat, btn) {
+  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = cat === 'all' ? SLANG : SLANG.filter(s => s.cat === cat);
+  renderGrid('trendingGrid', filtered.filter(s => s.trending).slice(0, 6));
+  renderGrid('recentGrid', [...filtered].sort((a,b) => b.id - a.id).slice(0, 6));
+}
+
+function browseFilter(f, btn) {
+  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = f === 'all' ? SLANG : SLANG.filter(s => s.cat === f || s.register === f);
+  renderGrid('browseGrid', filtered);
+}
+
+function handleSearch(val) {
+  const q = val.trim().toLowerCase();
+  const ac = document.getElementById('autocomplete');
+  const sa = document.getElementById('searchResultsArea');
+  const ta = document.getElementById('trendingArea');
+
+  if (!q) {
+    ac.classList.remove('show');
+    sa.style.display = 'none';
+    ta.style.display = '';
+    return;
+  }
+
+  const matches = SLANG.filter(s =>
+    s.term.toLowerCase().includes(q) ||
+    s.def.toLowerCase().includes(q) ||
+    s.similar.some(w => w.toLowerCase().includes(q))
+  );
+
+  if (val.length > 1 && matches.length) {
+    ac.innerHTML = matches.slice(0, 5).map(s => {
+      const cc = CAT_COLORS[s.cat] || {};
+      return `<div class="auto-item" role="option" onclick="showDetail(${s.id}); document.getElementById('heroSearch').value=''; document.getElementById('autocomplete').classList.remove('show')">
+        <span style="color:var(--text3);font-size:14px">○</span>
+        <span class="auto-term">${s.term}</span>
+        <span class="auto-badge" style="${tagStyle(cc)}">${CATS[s.cat]||s.cat}</span>
+      </div>`;
+    }).join('');
+    ac.classList.add('show');
+  } else {
+    ac.classList.remove('show');
+  }
+
+  ta.style.display = 'none';
+  sa.style.display = '';
+  document.getElementById('resultsCount').textContent = `${matches.length} result${matches.length !== 1 ? 's' : ''} for "${val}"`;
+  renderGrid('searchGrid', matches);
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) {
+    document.getElementById('autocomplete').classList.remove('show');
+  }
+});
+
+function showDetail(id) {
+  const s = SLANG.find(x => x.id === id);
+  if (!s) return;
+  const cc = CAT_COLORS[s.cat] || {};
+  const rc = REG_COLORS[s.register] || {};
+  const catLabel = CATS[s.cat] || s.cat;
+
+  document.getElementById('detailContent').innerHTML = `
+    <button class="back-btn" onclick="showPage('home'); setActiveNav('home')">← Back</button>
+    <div class="detail-word">${s.term}</div>
+    <div class="detail-meta">
+      <span class="tag" style="${tagStyle(cc)};font-size:12px;padding:5px 12px">${catLabel}</span>
+      <span class="tag" style="${tagStyle(rc)};font-size:12px;padding:5px 12px">${s.register}</span>
+      ${s.trending ? '<span class="tag" style="background:rgba(14,207,170,0.12);color:var(--teal);border:1px solid rgba(14,207,170,0.25);font-size:12px;padding:5px 12px">🔥 trending</span>' : ''}
+    </div>
+    <div class="detail-pronun">${s.pronun}</div>
+    <div class="detail-card">
+      <div class="detail-label">Definition</div>
+      <div class="detail-content">${s.def}</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-label">Usage examples</div>
+      ${s.examples.map((ex, i) => `<div class="example-item"><span class="ex-num">0${i+1}</span><span>${ex}</span></div>`).join('')}
+    </div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-label">Origin</div>
+        <div class="detail-content" style="font-size:13px">${s.origin}</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-label">Popularity score</div>
+        <div class="heat-big-bar"><div class="heat-big-fill" style="width:${s.heat}%;background:${heatColor(s.heat)}"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:4px"><span>0</span><span style="font-size:18px;font-family:var(--font-display);font-weight:700;color:var(--text)">${s.heat}</span><span>100</span></div>
+      </div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-label">Similar slang</div>
+      <div class="similar-chips">
+        ${s.similar.map(w => `<button class="similar-chip" onclick="searchSimilar('${w}')">${w}</button>`).join('')}
+      </div>
+    </div>`;
+
+  showPage('detail');
+}
+
+function searchSimilar(word) {
+  const found = SLANG.find(s => s.term.toLowerCase() === word.toLowerCase());
+  if (found) { showDetail(found.id); return; }
+  document.getElementById('heroSearch').value = word;
+  showPage('home');
+  setActiveNav('home');
+  handleSearch(word);
+}
+// ── GAME ──────────────────────────────────────────────────────────────────
+let gameState = { current: null, score: 0, streak: 0, round: 1, revealed: false };
+
+function startGame() {
+  gameState = { current: null, score: 0, streak: 0, round: 1, revealed: false };
+  updateScoreUI();
+  pickRound();
+  document.getElementById('gameOverlay').classList.add('show');
+  setTimeout(() => document.getElementById('gameInput').focus(), 80);
+}
+
+function closeGame() {
+  document.getElementById('gameOverlay').classList.remove('show');
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('gameOverlay')) closeGame();
+}
+
+function pickRound() {
+  const s = SLANG[Math.floor(Math.random() * SLANG.length)];
+  gameState.current = s;
+  gameState.revealed = false;
+  document.getElementById('gameDef').textContent = s.def;
+  document.getElementById('gameExamples').innerHTML = '';
+  document.getElementById('gameInput').value = '';
+  document.getElementById('gameFeedback').textContent = '';
+  document.getElementById('gameFeedback').className = 'game-feedback';
+  document.getElementById('gameHint').textContent =
+    `Hint: ${s.term.length} letters · starts with "${s.term[0].toUpperCase()}"`;
+  setTimeout(() => document.getElementById('gameInput').focus(), 40);
+}
+
+function submitGuess() {
+  if (gameState.revealed) { nextRound(); return; }
+  const val = document.getElementById('gameInput').value.trim();
+  if (!val) return;
+  const correct = val.toLowerCase() === gameState.current.term.toLowerCase();
+  const fb = document.getElementById('gameFeedback');
+  if (correct) {
+    gameState.score += 10 + gameState.streak * 2;
+    gameState.streak++;
+    fb.textContent = `✓ Correct! +${10 + (gameState.streak - 1) * 2} pts`;
+    fb.className = 'game-feedback correct';
+    updateScoreUI();
+    setTimeout(() => nextRound(), 1100);
+  } else {
+    gameState.streak = 0;
+    fb.textContent = `✗ Not quite — try again!`;
+    fb.className = 'game-feedback wrong';
+    updateScoreUI();
+  }
+}
+
+function revealAnswer() {
+  if (gameState.revealed) return;
+  gameState.revealed = true;
+  gameState.streak = 0;
+  updateScoreUI();
+  const fb = document.getElementById('gameFeedback');
+  fb.textContent = `The answer was: ${gameState.current.term}`;
+  fb.className = 'game-feedback wrong';
+  document.getElementById('gameInput').value = gameState.current.term;
+}
+
+function nextRound() {
+  gameState.round++;
+  document.getElementById('gameRound').textContent = gameState.round;
+  pickRound();
+}
+
+function updateScoreUI() {
+  document.getElementById('gameScore').textContent = gameState.score;
+  document.getElementById('gameStreak').textContent = gameState.streak;
+}
+
+// ── END GAME ───────────────────────────────────────────────────────────────
+init();
+</script>
+<footer style="text-align:center; padding: 32px 16px 24px; font-family: var(--font-mono); font-size: 11px; color: var(--text3); letter-spacing: 0.05em;">
+  made by <strong style="color:var(--text2)">Haykal Adidito Yustito</strong> &nbsp;·&nbsp; 2505181033
+</footer>
+</body>
+</html>
